@@ -10,7 +10,7 @@ modules:
     build-commands:
       - mkdir -p /app/package/bitsafe
       - cp -r bitsafe/ /app/package/
-      - cp -r bitsafe_ic.png /app/package/
+      - cp -r bitsafe_ic.png /app/package/bitsafe_ic.png
       - install -D setup.py /app/package/setup.py
       - pip3 install /app/package
     sources:
@@ -19,6 +19,8 @@ modules:
       - type: dir
         path: bitsafe/
         dest: bitsafe/
+      - type: file
+        path: bitsafe_ic.png
   - name: runner
     buildsystem: simple
     build-commands:
@@ -26,5 +28,3 @@ modules:
     sources:
       - type: file
         path: bitsafe.sh
-      - type: file
-        path: bitsafe_ic.png
