@@ -1,17 +1,12 @@
-id: io.github.Bitsafe_cli
+id: io.github.francivaldo4334.Bitsafe_cli
 runtime: org.freedesktop.Platform
 runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
 command: runner.sh
-finish-args:
-  - --share=network
 modules:
   - python3-requirements.json
   - name: app-install
     buildsystem: simple
-    build-options:
-      build-args:
-        - --share=network
     build-commands:
       - mkdir -p /app/package/bitsafe
       - cp -r bitsafe/ /app/package/

@@ -7,3 +7,5 @@
 /.flatpak-builder
 /venv
 *.pyc
+/.venv
+/bitsafe.egg-info
