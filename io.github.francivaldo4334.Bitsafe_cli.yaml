@@ -2,7 +2,7 @@ id: io.github.francivaldo4334.Bitsafe_cli
 runtime: org.freedesktop.Platform
 runtime-version: '23.08'
 sdk: org.freedesktop.Sdk
-command: runner.sh
+command: bitsafe.sh
 modules:
   - python3-requirements.json
   - name: app-install
@@ -10,6 +10,7 @@ modules:
     build-commands:
       - mkdir -p /app/package/bitsafe
       - cp -r bitsafe/ /app/package/
+      - cp -r bitsafe_ic.png /app/package/
       - install -D setup.py /app/package/setup.py
       - pip3 install /app/package
     sources:
@@ -21,7 +22,9 @@ modules:
   - name: runner
     buildsystem: simple
     build-commands:
-      - install -D runner.sh /app/bin/runner.sh
+      - install -D bitsafe.sh /app/bin/bitsafe.sh
     sources:
       - type: file
-        path: runner.sh
+        path: bitsafe.sh
+      - type: file
+        path: bitsafe_ic.png
