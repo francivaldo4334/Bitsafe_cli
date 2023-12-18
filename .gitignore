@@ -1,4 +1,4 @@
-/bitsafe/res/*
+/src/res/*
 .idea/*
 /cli_bitsafe_state.json
 /public_key.pem

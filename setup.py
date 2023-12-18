@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 #
 setup(
-    name='bitsafe',
+    name='src',
     version='1.0',
     description='Bitsafe - CLI',
     author='francivaldo costa reis',
