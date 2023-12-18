@@ -7,8 +7,8 @@ import signal
 from http.server import BaseHTTPRequestHandler
 from subprocess import Popen, PIPE
 
-from src.myUtils import MyIp
-from src.myUtils import SharedPreferences
+from bitsafe.src.myUtils import MyIp
+from bitsafe.src.myUtils import SharedPreferences
 
 
 class CustomHandler(BaseHTTPRequestHandler):

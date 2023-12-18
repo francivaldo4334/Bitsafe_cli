@@ -13,8 +13,8 @@ from subprocess import Popen, PIPE
 import requests
 import qrcode
 
-from src.CustomHandler import CustomHandler
-from src.myUtils import SharedPreferences, MyIp
+from bitsafe.src.CustomHandler import CustomHandler
+from bitsafe.src.myUtils import SharedPreferences, MyIp
 
 
 class Connection:
@@ -138,8 +138,6 @@ class Connection:
             print(json.dumps(response,indent=2))
             return True
         elif args.find:
-            print("ok")
-
             find = {
                 "term": args.find
             }
