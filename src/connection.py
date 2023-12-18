@@ -138,6 +138,8 @@ class Connection:
             print(json.dumps(response,indent=2))
             return True
         elif args.find:
+            print("ok")
+
             find = {
                 "term": args.find
             }
@@ -164,7 +166,7 @@ class Connection:
                     ip = self.__get_local_ip()
                     base = self.__generate_qrcode_bytes(ip)
                     print(base)
-                elif ip_type == 'qrcode_module':
+                elif ip_type == 'qrcode':
                     ip = self.__get_local_ip()
                     qr_ascii = self.__generate_ascii_qrcode(ip)
                     print(qr_ascii)
@@ -209,7 +211,7 @@ class Connection:
             "-ip", "--ip_address",
             help="show ip into computer.",
             required=False,
-            choices=['string', 'qrcode_module', 'qrcode_base64']
+            choices=['string', 'qrcode', 'qrcode_base64']
         )
         parser.add_argument(
             "-c", "--connection",

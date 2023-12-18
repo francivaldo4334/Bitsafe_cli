@@ -7,7 +7,6 @@ import signal
 from http.server import BaseHTTPRequestHandler
 from subprocess import Popen, PIPE
 
-from src.constants import PUBLIC_KEY_PATH
 from src.myUtils import MyIp
 from src.myUtils import SharedPreferences
 
@@ -26,9 +25,7 @@ class CustomHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         my_ip = MyIp().get_ip()
-        public_key = open(PUBLIC_KEY_PATH, 'rb').read()
         response = {
-            'public_key': str(public_key),
             'route': my_ip
         }
         self.wfile.write(bytes(json.dumps(response, indent=2), 'utf-8'))
@@ -40,22 +37,17 @@ class CustomHandler(BaseHTTPRequestHandler):
         req = json.loads(post_data)
         print(type(req))
         user_id = req.get('user_id', '')
-        public_key_cell = req.get('public_key', '')
         host = req.get('host', '')
         preferences = SharedPreferences()
         try:
-            if user_id and public_key_cell and host:
+            if user_id and host:
                 preferences.set_shared_state('user_id', user_id)
-                preferences.set_shared_state('host_public_key', public_key_cell)
                 preferences.set_shared_state('host_cell', host)
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
                 my_ip = MyIp().get_ip()
-                public_key = open(PUBLIC_KEY_PATH, 'rb').read()
-                port = preferences.get_shared_state('port','8000')
                 response = {
-                    'public_key': str(public_key),
                     'route': my_ip
                 }
                 self.wfile.write(bytes(json.dumps(response, indent=2), 'utf-8'))

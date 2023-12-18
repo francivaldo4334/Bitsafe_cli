@@ -20,15 +20,15 @@ class SharedPreferences:
         return default
 
     def set_shared_state(self, name, value):
-        if os.path.exists(self.state_file):
-            with open(self.state_file, 'r') as read_file:
-                try:
+        with open(self.state_file, 'r') as read_file:
+            try:
+                if os.path.exists(self.state_file):
                     read_data = json.load(read_file)
-                except Exception:
-                    read_data = json.loads("{}")
-                with open(self.state_file, 'w') as file:
-                    read_data[name] = value
-                    json.dump(read_data, file, indent=2)
+            except Exception:
+                read_data = json.loads("{}")
+            with open(self.state_file, 'w') as file:
+                read_data[name] = value
+                json.dump(read_data, file, indent=2)
 class MyIp:
     def is_valdi_first(self, address):
         first_int = address.split('.')[0]
