@@ -2,6 +2,6 @@
 Name=Bitsafe CLI
 Comment=CLI for comunication with Bitsafe password manager Android application
 Exec=bitsafe.sh
-Icon=bitsafe_ic
+Icon=Dm644 io.github.francivaldo4334.Bitsafe_cli
 Type=Application
 Categories=Utility
