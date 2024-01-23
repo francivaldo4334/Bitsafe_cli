@@ -20,9 +20,9 @@ class BitSafeCLI:
         Connection(self.argparcer)
         parser_args = self.argparcer.parse_args()
         if parser_args:
-            try:
-                if parser_args.func:
-                    parser_args.func(parser_args)
-            except Exception as e:
-                self.argparcer.print_help()
-                sys.exit(1)
+            # try:
+            if parser_args.func:
+                parser_args.func(parser_args)
+            # except Exception as e:
+            #     self.argparcer.print_help()
+            #     sys.exit(1)

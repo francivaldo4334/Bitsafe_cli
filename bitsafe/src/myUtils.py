@@ -24,6 +24,9 @@ class SharedPreferences:
         return default
 
     def set_shared_state(self, name, value):
+        if not os.path.exists(self.state_file):
+            with open(self.state_file, 'w') as file:
+                file.write('{}')
         with open(self.state_file, 'r') as read_file:
             try:
                 if os.path.exists(self.state_file):

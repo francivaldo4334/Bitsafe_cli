@@ -157,31 +157,31 @@ class Connection:
             return False
 
     def __action(self, args):
-        try:
-            if args.ip_address:
-                ip_type = args.ip_address
-                if  ip_type == 'qrcode_base64':
-                    ip = self.__get_local_ip()
-                    base = self.__generate_qrcode_bytes(ip)
-                    print(base)
-                elif ip_type == 'qrcode':
-                    ip = self.__get_local_ip()
-                    qr_ascii = self.__generate_ascii_qrcode(ip)
-                    print(qr_ascii)
-                else :
-                    ip = self.__get_local_ip()
-                    print(ip)
-            elif args.connection:
-                self.__local(args.connection)
-            elif self.__command('', args):
-                ...
-            else:
-                self.parser.print_help()
-                sys.exit(1)
-        except Exception as e:
+        # try:
+        if args.ip_address:
+            ip_type = args.ip_address
+            if  ip_type == 'qrcode_base64':
+                ip = self.__get_local_ip()
+                base = self.__generate_qrcode_bytes(ip)
+                print(base)
+            elif ip_type == 'qrcode':
+                ip = self.__get_local_ip()
+                qr_ascii = self.__generate_ascii_qrcode(ip)
+                print(qr_ascii)
+            else :
+                ip = self.__get_local_ip()
+                print(ip)
+        elif args.connection:
+            self.__local(args.connection)
+        elif self.__command('', args):
+            ...
+        else:
             self.parser.print_help()
-            print(f"Error: {e}")
             sys.exit(1)
+        # except Exception as e:
+        #     self.parser.print_help()
+        #     print(f"Error: {e}")
+        #     sys.exit(1)
 
     def __init__(self, parser):
         self.preferences = SharedPreferences()
