@@ -4,6 +4,10 @@ import json
 import os
 import platform
 import re
+import socket
+
+import requests
+
 
 class SharedPreferences:
     def __init__(self):
@@ -59,9 +63,16 @@ class MyIp:
     def get_ip(self):
         preferences = SharedPreferences()
         port = preferences.get_shared_state("port", "8000")
-        ip_list = self.__get_list_ips()
-        ip_valid_list = [f"http://{ip}:{port}" for ip in ip_list]
-        if len(ip_valid_list) > 0:
-            return ip_valid_list[0]
-        else:
+        try:
+            resposta = requests.get('https://httpbin.org/ip')
+            dados = resposta.json()
+            endereco_ip = dados['origin']
+            return f"http://{endereco_ip}:{port}"
+        except socket.error as e:
             return None
+        # ip_list = self.__get_list_ips()
+        # ip_valid_list = [f"http://{ip}:{port}" for ip in ip_list]
+        # if len(ip_valid_list) > 0:
+        #     return ip_valid_list[0]
+        # else:
+        #     return None
